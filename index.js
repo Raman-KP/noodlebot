@@ -20,6 +20,26 @@ client.on("message", async function(msg){
         return;
     }
 
+    if(msg.author.id === "98213223676801024"){//tyler blacklist
+        const emoteSkell = msg.guild.emojis.cache.find(emoji=>emoji.name==="Skell");
+        if(msg.content.includes(emoteSkell)){
+            if(!msg.guild) return;
+
+            if(msg.member.voice.channel){
+                await msg.member.voice.channel.join().then(connection=>{
+                    const dispatcher = connection.play("./sounds/rawr.mp3");
+                    dispatcher.setVolume(0.5);
+                    dispatcher.on("finish", ()=>{
+                        msg.member.voice.channel.leave();
+                    });
+                }).catch(console.log);
+            }else{
+                await msg.reply("you need to be in vc");
+            }
+        }
+        return;
+    }
+
     if(msg.content.toLowerCase().includes("darkness")){
         await msg.reply("ė̴̺x̷̛͗ȋ̷̍s̷͈̋t̸̖́ĕ̸͖n̸͌͐t̷͊͗i̴̓͗a̸͛̿l̷͂͊ ̷̈́̆s̴͊̅u̴͒̄f̶̠̈́f̴̿̚ȅ̴͒r̵͑̿i̸̅̌n̷̈́͠g̴̡̛");
     }
@@ -48,12 +68,11 @@ client.on("message", async function(msg){
     }
 
     if(args === "help"){
-        const helpEmb = new discord.MessageEmbed();
+        const helpEmb = new discord.MessageEmbed(this, 'client');
         helpEmb.setColor("#8000ff");
         helpEmb.setTitle("Commands");
         helpEmb.setDescription(">spotify\n >friendcodes\n >soundboard\n");
         helpEmb.setThumbnail("https://purepng.com/public/uploads/medium/purepng.com-hammerhammerscoldstrike-agairon-hammer-1701527869673yd3ts.png");
-        helpEmb.addBlankField(false);
 
         await msg.channel.send(helpEmb);
     }
@@ -93,18 +112,18 @@ client.on("message", async function(msg){
     }
 
     if(args === "leavevc"){
-        await msg.member.voiceChannel.leave();
+        await msg.member.voice.channel.leave();
     }
 
     if(args === "stnraightup"){
         if(!msg.guild) return;
 
-        if(msg.member.voiceChannel){
-            await msg.member.voiceChannel.join().then(connection=>{
+        if(msg.member.voice.channel){
+            await msg.member.voice.channel.join().then(connection=>{
                 const dispatcher = connection.play("./sounds/str8up.wav", {volume:0.5});
                 dispatcher.setVolume(0.5);
-                dispatcher.on("end", ()=>{
-                    msg.member.voiceChannel.leave();
+                dispatcher.on("finish", ()=>{
+                    msg.member.voice.channel.leave();
                 });
             }).catch(console.log);
         }else{
@@ -115,12 +134,12 @@ client.on("message", async function(msg){
     if(args === "it'slit"){
         if(!msg.guild) return;
 
-        if(msg.member.voiceChannel){
-            await msg.member.voiceChannel.join().then(connection=>{
-                const dispatcher = connection.playFile("./sounds/itslit.mp3");
+        if(msg.member.voice.channel){
+            await msg.member.voice.channel.join().then(connection=>{
+                const dispatcher = connection.play("./sounds/itslit.mp3");
                 dispatcher.setVolume(0.5);
-                dispatcher.on("end", ()=>{
-                    msg.member.voiceChannel.leave();
+                dispatcher.on("finish", ()=>{
+                    msg.member.voice.channel.leave();
                 });
             }).catch(console.log);
         }else{
@@ -131,12 +150,12 @@ client.on("message", async function(msg){
     if(args === "wow"){
         if(!msg.guild) return;
 
-        if(msg.member.voiceChannel){
-            await msg.member.voiceChannel.join().then(connection=>{
-                const dispatcher = connection.playFile("./sounds/wow.mp3");
+        if(msg.member.voice.channel){
+            await msg.member.voice.channel.join().then(connection=>{
+                const dispatcher = connection.play("./sounds/wow.mp3");
                 dispatcher.setVolume(0.5);
-                dispatcher.on("end", ()=>{
-                    msg.member.voiceChannel.leave();
+                dispatcher.on("finish", ()=>{
+                    msg.member.voice.channel.leave();
                 });
             }).catch(console.log);
         }else{
@@ -147,12 +166,12 @@ client.on("message", async function(msg){
     if(args === "youwhat"){
         if(!msg.guild) return;
 
-        if(msg.member.voiceChannel){
-            await msg.member.voiceChannel.join().then(connection=>{
-                const dispatcher = connection.playFile("./sounds/youwhat.mp3");
+        if(msg.member.voice.channel){
+            await msg.member.voice.channel.join().then(connection=>{
+                const dispatcher = connection.play("./sounds/youwhat.mp3");
                 dispatcher.setVolume(0.5);
-                dispatcher.on("end", ()=>{
-                    msg.member.voiceChannel.leave();
+                dispatcher.on("finish", ()=>{
+                    msg.member.voice.channel.leave();
                 });
             }).catch(console.log);
         }else{
@@ -163,12 +182,12 @@ client.on("message", async function(msg){
     if(args === "uhoh"){
         if(!msg.guild) return;
 
-        if(msg.member.voiceChannel){
-            await msg.member.voiceChannel.join().then(connection=>{
-                const dispatcher = connection.playFile("./sounds/uhoh.mp3");
+        if(msg.member.voice.channel){
+            await msg.member.voice.channel.join().then(connection=>{
+                const dispatcher = connection.play("./sounds/uhoh.mp3");
                 dispatcher.setVolume(0.5);
-                dispatcher.on("end", ()=>{
-                    msg.member.voiceChannel.leave();
+                dispatcher.on("finish", ()=>{
+                    msg.member.voice.channel.leave();
                 });
             }).catch(console.log);
         }else{
@@ -179,12 +198,12 @@ client.on("message", async function(msg){
     if(args === "gameboy"){
         if(!msg.guild) return;
 
-        if(msg.member.voiceChannel){
-            await msg.member.voiceChannel.join().then(connection=>{
-                const dispatcher = connection.playFile("./sounds/gameboy.mp3");
+        if(msg.member.voice.channel){
+            await msg.member.voice.channel.join().then(connection=>{
+                const dispatcher = connection.play("./sounds/gameboy.mp3");
                 dispatcher.setVolume(0.5);
-                dispatcher.on("end", ()=>{
-                    msg.member.voiceChannel.leave();
+                dispatcher.on("finish", ()=>{
+                    msg.member.voice.channel.leave();
                 });
             }).catch(console.log);
         }else{
@@ -195,12 +214,12 @@ client.on("message", async function(msg){
     if(args === "yellowtape"){
         if(!msg.guild) return;
 
-        if(msg.member.voiceChannel){
-            await msg.member.voiceChannel.join().then(connection=>{
-                const dispatcher = connection.playFile("./sounds/yellowtape.mp3");
+        if(msg.member.voice.channel){
+            await msg.member.voice.channel.join().then(connection=>{
+                const dispatcher = connection.play("./sounds/yellowtape.mp3");
                 dispatcher.setVolume(0.5);
-                dispatcher.on("end", ()=>{
-                    msg.member.voiceChannel.leave();
+                dispatcher.on("finish", ()=>{
+                    msg.member.voice.channel.leave();
                 });
             }).catch(console.log);
         }else{
