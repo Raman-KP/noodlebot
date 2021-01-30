@@ -20,24 +20,22 @@ client.on("message", async function(msg){
         return;
     }
 
-    if(msg.author.id === "98213223676801024"){//tyler blacklist
-        const emoteSkell = msg.guild.emojis.cache.find(emoji=>emoji.name==="Skell");
-        if(msg.content.includes(emoteSkell)){
-            if(!msg.guild) return;
 
-            if(msg.member.voice.channel){
-                await msg.member.voice.channel.join().then(connection=>{
-                    const dispatcher = connection.play("./sounds/rawr.mp3");
-                    dispatcher.setVolume(0.5);
-                    dispatcher.on("finish", ()=>{
-                        msg.member.voice.channel.leave();
-                    });
-                }).catch(console.log);
-            }else{
-                await msg.reply("you need to be in vc");
-            }
+    const emoteSkell = msg.guild.emojis.cache.find(emoji=>emoji.name==="Skell");
+    if(msg.content.includes(emoteSkell)){
+        if(!msg.guild) return;
+
+        if(msg.member.voice.channel){
+            await msg.member.voice.channel.join().then(connection=>{
+                const dispatcher = connection.play("./sounds/rawr.mp3");
+                dispatcher.setVolume(0.5);
+                dispatcher.on("finish", ()=>{
+                    msg.member.voice.channel.leave();
+                });
+            }).catch(console.log);
+        }else{
+            await msg.reply("you need to be in vc");
         }
-        return;
     }
 
     if(msg.content.toLowerCase().includes("darkness")){
@@ -103,7 +101,7 @@ client.on("message", async function(msg){
         const spotEmb = new discord.MessageEmbed();
         spotEmb.setColor("#1db954");
         spotEmb.setTitle("Owed for Spotify");
-        spotEmb.setDescription("Ryan: $"+spotify[0]+"\n Tharsan: $"+spotify[1]+"\n Manraaj: $"+spotify[2]+"\n Tyler: $"+spotify[3]);
+        spotEmb.setDescription("Ryan: $"+spotify[0]+"\n Tharsan: $"+spotify[1]+"\n Jasmine: $"+spotify[2]+"\n Tyler: $"+spotify[3]+"\n David: $"+spotify[4]);
         spotEmb.setThumbnail("https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png");
         await msg.channel.send(spotEmb);
     }
