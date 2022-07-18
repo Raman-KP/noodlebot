@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 const fs = require("fs");
 const client = new discord.Client();
-let token = "NDExMjEzNDA3MjQ1NTY1OTUy.Xc7frg.zgK54rA28DM6ThPwePDrCk-uh5o";
+let token = "XXX";
 let pref = ">";
 
 //twitter copyright interval
